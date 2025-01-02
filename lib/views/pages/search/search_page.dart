@@ -54,7 +54,7 @@ class _SearchPageState extends State<SearchPage> {
           },
           hintText: "search.hint-text".i18n,
           // title: "common.search".i18n,
-          title: "",
+          title: " ",
           flexibleSpace: Obx(
             () => Column(
               children: [

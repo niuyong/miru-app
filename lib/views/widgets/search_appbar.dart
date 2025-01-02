@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:miru_app/views/pages/extension/extension_repo_page.dart';
 
 class SearchAppBar extends StatefulWidget implements PreferredSizeWidget {
   SearchAppBar({
@@ -48,7 +50,16 @@ class _SearchAppBarState extends State<SearchAppBar> {
               },
               icon: const Icon(Icons.arrow_back),
             )
-          : null,
+          : widget.title == " "
+              ? IconButton(
+                  onPressed: () {
+                    Get.to(
+                      () => const ExtensionRepoPage(),
+                    );
+                  },
+                  icon: const Icon(Icons.add),
+                )
+              : null,
       title: _showSearch
           ? PopScope(
               canPop: false,
