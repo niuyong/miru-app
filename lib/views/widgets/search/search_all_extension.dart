@@ -8,6 +8,9 @@ import 'package:miru_app/views/widgets/search/search_all_tile.dart';
 import 'package:miru_app/router/router.dart';
 import 'package:miru_app/utils/i18n.dart';
 import 'package:miru_app/views/widgets/button.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+
+import 'package:miru_app/views/pages/extension/extension_repo_page.dart';
 
 class SearchAllExtSearch extends StatefulWidget {
   const SearchAllExtSearch({
@@ -40,7 +43,17 @@ class _SearchAllExtSearchState extends State<SearchAllExtSearch> {
               child: Text("common.extension-repo".i18n),
               onPressed: () {
                 if (Platform.isAndroid) {
-                  Get.find<MainController>().selectedTab.value = 2;
+                  // Get.find<MainController>().selectedTab.value = 2;
+                  Get.to(
+                        () => const ExtensionRepoPage(),
+                  );
+                  // Fluttertoast.showToast(
+                  //   msg: "Hello, FlutterToast!",
+                  //   toastLength: Toast.LENGTH_SHORT,
+                  //   gravity: ToastGravity.CENTER,
+                  //   textColor: Colors.white,
+                  //   backgroundColor: Colors.blue.withOpacity(0.5),
+                  // );
                   return;
                 }
                 router.push('/extension_repo');

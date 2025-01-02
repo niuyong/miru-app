@@ -3,7 +3,7 @@
     "anime": "动漫",
     "manga": "漫画",
     "home": "首页",
-    "search": "搜索",
+    "search": "资源库",
     "extension": "扩展",
     "extension-repo": "扩展仓库",
     "settings": "设置",
@@ -35,7 +35,7 @@
   "home": {
     "continue-watching": "继续观看",
     "favorite": "收藏",
-    "no-record": "暂无收藏和观看记录",
+    "no-record": "请到“资源库”搜索您需要的资源，对于喜欢的资源通过点击“收藏”展示到首页",
     "watched": "看到 {ep}",
     "favorite-all": "所有{type}收藏"
   },

@@ -107,7 +107,7 @@ class MiruStorage {
     await _initSetting(SettingKey.miruRepoUrl, "https://miru-repo.0n0.dev");
     await _initSetting(SettingKey.tmdbKey, "");
     await _initSetting(SettingKey.autoCheckUpdate, true);
-    await _initSetting(SettingKey.language, 'en');
+    await _initSetting(SettingKey.language, 'zh');
     await _initSetting(SettingKey.novelFontSize, 18.0);
     await _initSetting(SettingKey.theme, 'system');
     await _initSetting(SettingKey.enableNSFW, false);
