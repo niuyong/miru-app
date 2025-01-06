@@ -177,17 +177,17 @@ class _ExtensionPageState extends State<ExtensionPage> {
                 icon: const Icon(Icons.error),
                 onPressed: () => _loadErrorDialog(),
               ),
-            IconButton(
-              onPressed: () => _importDialog(),
-              icon: const Icon(Icons.add),
-            ),
+            // IconButton(
+            //   onPressed: () => _importDialog(),
+            //   icon: const Icon(Icons.add),
+            // ),
             IconButton(
               onPressed: () {
                 Get.to(
                   () => const ExtensionRepoPage(),
                 );
               },
-              icon: const Icon(Icons.download),
+              icon: const Icon(Icons.add),
             )
           ],
         ),

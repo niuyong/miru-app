@@ -7,6 +7,7 @@ import 'package:miru_app/views/pages/home_page.dart';
 import 'package:miru_app/controllers/main_controller.dart';
 import 'package:miru_app/views/pages/search/search_page.dart';
 import 'package:miru_app/views/pages/settings/settings_page.dart';
+import 'package:miru_app/views/pages/settings/settings_page_pre.dart';
 import 'package:miru_app/router/router.dart';
 import 'package:miru_app/utils/application.dart';
 import 'package:miru_app/utils/i18n.dart';
@@ -190,7 +191,7 @@ class _AndroidMainPageState extends fluent.State<AndroidMainPage> {
     HomePage(),
     SearchPage(),
     // ExtensionPage(),
-    SettingsPage(),
+    SettingsPagePre(),
   ];
 
   @override
