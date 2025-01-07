@@ -62,7 +62,7 @@ android {
         applicationId "miru.miaomint.js"
         // You can update the following values to match your application needs.
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-gradle-build-configuration.
-        minSdkVersion 21
+        minSdkVersion 26
         // Cannot be changed or bt-server will not start.
         targetSdkVersion 28
         versionCode flutterVersionCode.toInteger()
@@ -108,6 +108,18 @@ flutter {
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'com.github.xuexiangjys:XUpdate:2.1.5'
+    implementation 'com.github.getActivity:ToastUtils:10.5'
+    //开源的网络请求库
+    implementation("com.squareup.okhttp3:okhttp:3.9.1")
+    //支持okhttp跟踪到一个网络请求的所有状态，包括请求头、请求体、响应行、 响应体,方便调试
+    implementation("com.squareup.okhttp3:logging-interceptor:3.9.1")
+    //实现将HTTP请求转换为Java接口
+    implementation("com.squareup.retrofit2:retrofit:2.3.0")
+    //配合Rxjava 使用
+    implementation("com.squareup.retrofit2:adapter-rxjava:2.1.0")
+    //转换器，请求结果转换成Model
+    implementation("com.squareup.retrofit2:converter-gson:2.1.0")
 }
 
 ext.abiCodes = ["x86_64": 1, "armeabi-v7a": 2, "arm64-v8a": 3]

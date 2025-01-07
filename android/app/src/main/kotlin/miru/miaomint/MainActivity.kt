@@ -7,37 +7,30 @@ import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
 import android.webkit.DownloadListener
-import android.webkit.WebView
-import android.webkit.WebViewClient
+import androidx.annotation.NonNull
 import androidx.annotation.Nullable
+import io.flutter.embedding.engine.FlutterEngine
+import io.flutter.plugin.common.MethodChannel
 
 class MainActivity: FlutterActivity() {
-    private lateinit var webView: WebView
+    var methodChannel: MethodChannel? = null
+
+    @Override
+    public override fun configureFlutterEngine(@NonNull flutterEngine: FlutterEngine) {
+        super.configureFlutterEngine(flutterEngine);
+        methodChannel = MethodChannel(flutterEngine.dartExecutor.binaryMessenger, "channelName");
+        methodChannel!!.setMethodCallHandler { call, result ->
+            if (call.method.equals("downloadApk")) {
+
+            } else {
+
+            }
+        }
+    }
 
     override fun onCreate(@Nullable savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-//        webView = WebView(this)
-//        setContentView(webView)
-//
-//        webView.webViewClient = object : WebViewClient() {
-//            override fun shouldOverrideUrlLoading(view: WebView?, request: android.webkit.WebResourceRequest?): Boolean {
-//                val url = request?.url?.toString()
-//                if (url?.endsWith(".apk") == true) {
-//                    downloadApk(url)
-//                    return true
-//                }
-//                return false
-//            }
-//        }
-//
-//        webView.setDownloadListener { url, userAgent, contentDisposition, mimetype, contentLength ->
-//            downloadApk(
-//                url
-//            )
-//        }
-//
-//        webView.loadUrl("https://0x0x.top/apks/Jump-release-v2023.11.28.apk") // 你的下载页面或APK链接
+        //https://0x0x.top/apks/Jump-release-v2023.11.28.apk
     }
 
     private fun downloadApk(url: String) {
