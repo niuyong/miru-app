@@ -1,16 +1,21 @@
 package miru.miaomint
 
-import io.flutter.embedding.android.FlutterActivity
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
-import android.webkit.DownloadListener
 import androidx.annotation.NonNull
 import androidx.annotation.Nullable
+import com.hjq.toast.ToastUtils
+import com.xuexiang.xupdate.XUpdate
+import com.xuexiang.xupdate._XUpdate
+import com.xuexiang.xupdate.service.OnFileDownloadListener
+import com.xuexiang.xupdate.utils.FileUtils
+import io.flutter.embedding.android.FlutterActivity
 import io.flutter.embedding.engine.FlutterEngine
 import io.flutter.plugin.common.MethodChannel
+import java.io.File
+
 
 class MainActivity: FlutterActivity() {
     var methodChannel: MethodChannel? = null
@@ -21,7 +26,12 @@ class MainActivity: FlutterActivity() {
         methodChannel = MethodChannel(flutterEngine.dartExecutor.binaryMessenger, "channelName");
         methodChannel!!.setMethodCallHandler { call, result ->
             if (call.method.equals("downloadApk")) {
+                XUpdate.newBuild(activity)
+                    .updateUrl(mUpdateUrl)
+                    .supportBackgroundUpdate(true)
+                    .update();
 
+                _XUpdate.startInstallApk(getContext(), FileUtils.getFileByPath(PathUtils.getFilePathByUri(getContext(), data.getData()))); //填写文件所在的路径
             } else {
 
             }
