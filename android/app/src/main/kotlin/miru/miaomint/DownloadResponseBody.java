@@ -1,5 +1,7 @@
 package miru.miaomint;
 
+import android.util.Log;
+
 import java.io.IOException;
 import java.util.concurrent.Executor;
 
@@ -17,6 +19,7 @@ public class DownloadResponseBody extends ResponseBody {
     private DownloadListener downloadListener;
     private BufferedSource bufferedSource;
     private Executor executor;
+    private final String TAG = "DownloadResponseBody";
 
     public DownloadResponseBody(ResponseBody responseBody, Executor executor, DownloadListener downloadListener) {
         this.responseBody = responseBody;
@@ -52,7 +55,7 @@ public class DownloadResponseBody extends ResponseBody {
                 // read() returns the number of bytes read, or -1 if this source is exhausted.
                 if (null != downloadListener) {
                     totalBytesRead += bytesRead != -1 ? bytesRead : 0;
-                    Logger.t("DownloadUtil").d("已经下载的：" + totalBytesRead + "共有：" + responseBody.contentLength());
+                    Log.v(TAG, "已经下载的：" + totalBytesRead + "共有：" + responseBody.contentLength());
                     final int progress = (int) (totalBytesRead * 100 / responseBody.contentLength());
                     if (executor != null) {
                         executor.execute(() -> downloadListener.onProgress(progress));

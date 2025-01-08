@@ -68,19 +68,18 @@ public class OKHttpUpdateHttpService implements IUpdateHttpService {
         Request_Interface request = netTools.exe();
         //对 发送请求 进行封装
         Map querymap = new HashMap();
-        querymap.put("mobile", binding.phoneNumber.getText().toString());
-        Call<Data<Map<String, String>>> call = request.getVerificationCode(querymap);
-        call.enqueue(new retrofit2.Callback<Data<Map<String, String>>>() {
+        Call<Data> call = request.ggetapk(querymap);
+        call.enqueue(new retrofit2.Callback<Data>() {
             //请求成功时回调
             @Override
-            public void onResponse(Call<Data<Map<String, String>>> call, Response<Data<Map<String, String>>> response) {
+            public void onResponse(Call<Data> call, Response<Data> response) {
                 callBack.onSuccess(response);
                 Log.v(TAG, "回调成功" + map);
             }
 
             //请求失败时候的回调
             @Override
-            public void onFailure(Call<Data<Map<String, String>>> call, Throwable t) {
+            public void onFailure(Call<Data> call, Throwable t) {
                 callBack.onError(t);
                 Log.e(TAG, "回调失败：" + t.getMessage() + "," + t);
             }
@@ -92,19 +91,18 @@ public class OKHttpUpdateHttpService implements IUpdateHttpService {
         Request_Interface request = netTools.exe();
         //对 发送请求 进行封装
         Map querymap = new HashMap();
-        querymap.put("mobile", binding.phoneNumber.getText().toString());
-        Call<Data<Map<String, String>>> call = request.getVerificationCode(querymap);
-        call.enqueue(new retrofit2.Callback<Data<Map<String, String>>>() {
+        Call<Data> call = request.pgetapk(querymap);
+        call.enqueue(new retrofit2.Callback<Data>() {
             //请求成功时回调
             @Override
-            public void onResponse(Call<Data<Map<String, String>>> call, Response<Data<Map<String, String>>> response) {
+            public void onResponse(Call<Data> call, Response<Data> response) {
                 callBack.onSuccess(response);
                 Log.v(TAG, "回调成功" + map);
             }
 
             //请求失败时候的回调
             @Override
-            public void onFailure(Call<Data<Map<String, String>>> call, Throwable t) {
+            public void onFailure(Call<Data> call, Throwable t) {
                 callBack.onError(t);
                 Log.e(TAG, "回调失败：" + t.getMessage() + "," + t);
             }
@@ -113,37 +111,31 @@ public class OKHttpUpdateHttpService implements IUpdateHttpService {
 
     @Override
     public void download(@NonNull String url, @NonNull String path, @NonNull String fileName, final @NonNull DownloadCallback callback) {
-        ExecutorService executorService = Executors.newFixedThreadPool(1);
-        DownloadInterceptor interceptor = new DownloadInterceptor(executorService, null);
-        OkHttpClient client = new OkHttpClient.Builder()
-                .addInterceptor(interceptor)
-                .retryOnConnectionFailure(true)
-                .connectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS)
-                .build();
-        final DownloadService api = new Retrofit.Builder()
-                .baseUrl(baseUrl)
-                .client(client)
+        XUpdate.newBuild(XUpdate.getContext())
+                .apkCacheDir(XUpdate.getContext().toString()) //设置下载缓存的根目录
                 .build()
-                .create(DownloadService.class);
-        new Thread(() -> {
-            try {
-                Response<ResponseBody> result = api.downloadWithDynamicUrl(rUrl).execute();
-                File file = writeFile(filePath, result.body().byteStream());
-                if (listener != null){
-                    executor.execute(()->{
-                        listener.onFinish(file);
-                    });
-                }
+                .download("", new OnFileDownloadListener() {   //设置下载的地址和下载的监听
+                    @Override
+                    public void onStart() {
+                        callback.onStart();
+                    }
 
-            } catch (IOException e) {
-                if (listener != null){
-                    executor.execute(()->{
-                        listener.onFailed(e.getMessage());
-                    });
-                }
-                e.printStackTrace();
-            }
-        }).start();
+                    @Override
+                    public void onProgress(float progress, long total) {
+                        callback.onProgress(progress, total);
+                    }
+
+                    @Override
+                    public boolean onCompleted(File file) {
+                        callback.onSuccess(file);
+                        return false;
+                    }
+
+                    @Override
+                    public void onError(Throwable throwable) {
+                        callback.onError(throwable);
+                    }
+                });
     }
 
     @Override

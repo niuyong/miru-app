@@ -16,8 +16,8 @@ public interface Request_Interface {
      * @param manuscript
      * @return
      */
-    @GET("getManuscriptList?")
-    Call<Data<List<Manuscript>>> getManuscriptList(@QueryMap Map<String, Object> query);
+    @GET("ggetapk?")
+    Call<Data> ggetapk(@QueryMap Map<String, Object> query);
     // @GET注解的作用:采用Get方法发送网络请求
 
     /**
@@ -25,7 +25,7 @@ public interface Request_Interface {
      * @param query
      * @return
      */
-    @POST("getVerificationCode?")
-    Call<Data<Map<String, String>>> getVerificationCode(@QueryMap Map<String, String> query);
+    @POST("pgetapk?")
+    Call<Data> pgetapk(@QueryMap Map<String, String> query);
 }
 
