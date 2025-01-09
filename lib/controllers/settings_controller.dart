@@ -12,6 +12,7 @@ class SettingsController extends GetxController {
   final extensionLogWindowId = (-1).obs;
 
   final links = {
+    'Source code': 'https://github.com/niuyong/miru-app',
     'Github': 'https://github.com/miru-project/miru-app',
     'Telegram Group': 'https://t.me/MiruChat',
     'Website': 'https://miru.js.org',

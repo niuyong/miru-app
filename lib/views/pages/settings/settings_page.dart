@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:file_picker/file_picker.dart';
 import 'package:fluent_ui/fluent_ui.dart' as fluent;
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:get/get.dart';
 import 'package:miru_app/data/providers/tmdb_provider.dart';
@@ -547,11 +548,16 @@ class _SettingsPageState extends State<SettingsPage> {
         ),
         trailing: PlatformWidget(
           androidWidget: TextButton(
-            onPressed: () {
-              ApplicationUtils.checkUpdate(
-                context,
-                showSnackbar: true,
-              );
+            onPressed: ()
+                // {
+                //   ApplicationUtils.checkUpdate(
+                //     context,
+                //     showSnackbar: true,
+                //   );
+                // },
+                async {
+              const platform = MethodChannel('channelName');
+              platform.invokeMethod("downloadApk");
             },
             child: Text('settings.upgrade-training'.i18n),
           ),

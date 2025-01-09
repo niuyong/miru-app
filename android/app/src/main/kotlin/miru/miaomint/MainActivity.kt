@@ -1,6 +1,7 @@
 package miru.miaomint
 
 import android.content.Intent
+import android.os.Bundle
 import android.util.Log
 import androidx.annotation.NonNull
 import com.hjq.toast.ToastUtils
@@ -13,21 +14,18 @@ class MainActivity: FlutterActivity() {
     private var methodChannel: MethodChannel? = null
     private val TAG = "MainActivity";
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        UpdateManager(this, UpdateManager.CHECK_AUTO).checkUpdate()
+    }
+
     @Override
     override fun configureFlutterEngine(@NonNull flutterEngine: FlutterEngine) {
         super.configureFlutterEngine(flutterEngine);
         methodChannel = MethodChannel(flutterEngine.dartExecutor.binaryMessenger, "channelName");
         methodChannel!!.setMethodCallHandler { call, _ ->
             if (call.method.equals("downloadApk")) {
-                ToastUtils.show("哈哈哈")
-                context.filesDir.list().forEach { f ->
-                    Log.v(TAG, "哈哈哈->" + f)
-                }
-                context.filesDir.listFiles().forEach { file ->
-                    Log.v(TAG, "哈哈哈" + file.name)
-                }
-
-                UpdateManager(this, UpdateManager.CHECK_AUTO).checkUpdate()
+                UpdateManager(this, UpdateManager.CHECK_USER).checkUpdate()
             } else {
 
             }

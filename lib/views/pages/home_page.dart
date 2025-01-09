@@ -40,9 +40,12 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
                 const SizedBox(height: 20),
-                Text(
-                  "home.no-record".i18n,
-                ),
+                Padding(
+                  padding: const EdgeInsets.all(50.0),
+                  child: Text(
+                    "home.no-record".i18n,
+                  ),
+                )
               ],
             ),
           );

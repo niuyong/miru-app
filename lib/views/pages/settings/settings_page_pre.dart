@@ -17,7 +17,6 @@ class SettingsPagePre extends StatefulWidget {
 }
 
 class _SettingsPagePreState extends State<SettingsPagePre> {
-
   @override
   void initState() {
     super.initState();
@@ -85,30 +84,7 @@ class _SettingsPagePreState extends State<SettingsPagePre> {
           ),
           Text('设置')
         ]),
-      ),
-      InkWell(
-        //单击事件响应
-        onTap: () async {
-          const platform = MethodChannel('channelName');
-          var data = await platform
-              .invokeMethod("downloadApk", {"name": "getAndroidData"});
-        },
-        child: const Row(children: [
-          SizedBox(
-            height: 60,
-            width: 10,
-          ),
-          Icon(
-            Icons.settings,
-            size: 36.0,
-          ),
-          SizedBox(
-            height: 60,
-            width: 10,
-          ),
-          Text('更新')
-        ]),
-      ),
+      )
     ];
   }
 
