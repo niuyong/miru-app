@@ -1,63 +1,36 @@
 package miru.miaomint
 
 import android.content.Intent
-import android.net.Uri
-import android.os.Bundle
-import android.provider.Settings
+import android.util.Log
 import androidx.annotation.NonNull
-import androidx.annotation.Nullable
 import com.hjq.toast.ToastUtils
-import com.xuexiang.xupdate.XUpdate
-import com.xuexiang.xupdate._XUpdate
-import com.xuexiang.xupdate.service.OnFileDownloadListener
-import com.xuexiang.xupdate.utils.FileUtils
 import io.flutter.embedding.android.FlutterActivity
 import io.flutter.embedding.engine.FlutterEngine
 import io.flutter.plugin.common.MethodChannel
-import java.io.File
-
+import miru.miaomint.update.UpdateManager
 
 class MainActivity: FlutterActivity() {
-    var methodChannel: MethodChannel? = null
+    private var methodChannel: MethodChannel? = null
+    private val TAG = "MainActivity";
 
     @Override
-    public override fun configureFlutterEngine(@NonNull flutterEngine: FlutterEngine) {
+    override fun configureFlutterEngine(@NonNull flutterEngine: FlutterEngine) {
         super.configureFlutterEngine(flutterEngine);
         methodChannel = MethodChannel(flutterEngine.dartExecutor.binaryMessenger, "channelName");
-        methodChannel!!.setMethodCallHandler { call, result ->
+        methodChannel!!.setMethodCallHandler { call, _ ->
             if (call.method.equals("downloadApk")) {
-                XUpdate.newBuild(activity)
-                    .updateUrl(mUpdateUrl)
-                    .supportBackgroundUpdate(true)
-                    .update();
+                ToastUtils.show("哈哈哈")
+                context.filesDir.list().forEach { f ->
+                    Log.v(TAG, "哈哈哈->" + f)
+                }
+                context.filesDir.listFiles().forEach { file ->
+                    Log.v(TAG, "哈哈哈" + file.name)
+                }
 
-                _XUpdate.startInstallApk(getContext(), FileUtils.getFileByPath(PathUtils.getFilePathByUri(getContext(), data.getData()))); //填写文件所在的路径
+                UpdateManager(this, UpdateManager.CHECK_AUTO).checkUpdate()
             } else {
 
             }
-        }
-    }
-
-    override fun onCreate(@Nullable savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        //https://0x0x.top/apks/Jump-release-v2023.11.28.apk
-    }
-
-    private fun downloadApk(url: String) {
-        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
-        intent.setDataAndType(Uri.parse(url), "application/vnd.android.package-archive")
-        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-
-        if (packageManager.canRequestPackageInstalls()) {
-            startActivity(intent)
-        } else {
-            // 请求用户允许安装未知来源的APK
-            startActivityForResult(
-                Intent(Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES)
-                    .setData(Uri.parse("package:$packageName")),
-                REQUEST_INSTALL_PERMISSION
-            )
         }
     }
 

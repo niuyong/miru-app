@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:miru_app/utils/i18n.dart';
 import 'package:miru_app/views/pages/settings/settings_page.dart';
@@ -16,6 +17,7 @@ class SettingsPagePre extends StatefulWidget {
 }
 
 class _SettingsPagePreState extends State<SettingsPagePre> {
+
   @override
   void initState() {
     super.initState();
@@ -82,6 +84,29 @@ class _SettingsPagePreState extends State<SettingsPagePre> {
             width: 10,
           ),
           Text('设置')
+        ]),
+      ),
+      InkWell(
+        //单击事件响应
+        onTap: () async {
+          const platform = MethodChannel('channelName');
+          var data = await platform
+              .invokeMethod("downloadApk", {"name": "getAndroidData"});
+        },
+        child: const Row(children: [
+          SizedBox(
+            height: 60,
+            width: 10,
+          ),
+          Icon(
+            Icons.settings,
+            size: 36.0,
+          ),
+          SizedBox(
+            height: 60,
+            width: 10,
+          ),
+          Text('更新')
         ]),
       ),
     ];

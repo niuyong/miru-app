@@ -1,4 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <application
         android:label="袋鼠口袋"
         android:name=".MainApplication"
@@ -27,7 +29,7 @@
         </activity>
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="fileProvider"
+            android:authorities="miru.miaomint.js.fileProvider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
