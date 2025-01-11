@@ -579,17 +579,17 @@ class _SettingsPageState extends State<SettingsPage> {
           width: 24,
           height: 24,
         ),
-        title: "Miru",
+        title: "袋鼠口袋",
         subTitle: "AGPL-3.0 License",
         open: true,
         noPage: true,
         content: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const SelectableText(
-              "🎉 A versatile application that is free, open-source, and supports extension sources for videos, comics, and novels, available on Android, Windows, and Web platforms.",
-            ),
-            const SizedBox(height: 20),
+            // const SelectableText(
+            //   "🎉 A versatile application that is free, open-source, and supports extension sources for videos, comics, and novels, available on Android, Windows, and Web platforms.",
+            // ),
+            // const SizedBox(height: 20),
             Text(
               'settings.links'.i18n,
             ),
@@ -619,39 +619,39 @@ class _SettingsPageState extends State<SettingsPage> {
                   )
               ],
             ),
-            const SizedBox(height: 10),
-            Text(
-              'settings.contributors'.i18n,
-            ),
-            const SizedBox(height: 8),
-            Obx(
-              () => Wrap(
-                children: [
-                  if (c.contributors.isNotEmpty)
-                    for (final contributor in c.contributors)
-                      fluent.Padding(
-                        padding: const EdgeInsets.only(right: 10),
-                        child: MouseRegion(
-                          cursor: SystemMouseCursors.click,
-                          child: GestureDetector(
-                            onTap: () async {
-                              await launchUrl(
-                                Uri.parse(contributor['html_url']),
-                                mode: LaunchMode.externalApplication,
-                              );
-                            },
-                            child: Text(
-                              contributor['login'],
-                              style: const TextStyle(
-                                color: Colors.blue,
-                              ),
-                            ),
-                          ),
-                        ),
-                      )
-                ],
-              ),
-            ),
+            // const SizedBox(height: 10),
+            // Text(
+            //   'settings.contributors'.i18n,
+            // ),
+            // const SizedBox(height: 8),
+            // Obx(
+            //   () => Wrap(
+            //     children: [
+            //       if (c.contributors.isNotEmpty)
+            //         for (final contributor in c.contributors)
+            //           fluent.Padding(
+            //             padding: const EdgeInsets.only(right: 10),
+            //             child: MouseRegion(
+            //               cursor: SystemMouseCursors.click,
+            //               child: GestureDetector(
+            //                 onTap: () async {
+            //                   await launchUrl(
+            //                     Uri.parse(contributor['html_url']),
+            //                     mode: LaunchMode.externalApplication,
+            //                   );
+            //                 },
+            //                 child: Text(
+            //                   contributor['login'],
+            //                   style: const TextStyle(
+            //                     color: Colors.blue,
+            //                   ),
+            //                 ),
+            //               ),
+            //             ),
+            //           )
+            //     ],
+            //   ),
+            // ),
           ],
         ),
       )

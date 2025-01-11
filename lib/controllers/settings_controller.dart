@@ -13,10 +13,10 @@ class SettingsController extends GetxController {
 
   final links = {
     'Source code': 'https://github.com/niuyong/miru-app',
-    'Github': 'https://github.com/miru-project/miru-app',
-    'Telegram Group': 'https://t.me/MiruChat',
-    'Website': 'https://miru.js.org',
-    'F-Droid': 'https://f-droid.org/zh_Hans/packages/miru.miaomint/',
+    // 'Github': 'https://github.com/miru-project/miru-app',
+    // 'Telegram Group': 'https://t.me/MiruChat',
+    // 'Website': 'https://miru.js.org',
+    // 'F-Droid': 'https://f-droid.org/zh_Hans/packages/miru.miaomint/',
   };
 
   @override
