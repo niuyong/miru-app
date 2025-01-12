@@ -661,7 +661,7 @@ class _SettingsPageState extends State<SettingsPage> {
   Widget _buildAndroid(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('common.settings'.i18n),
+        title: const Text("设置"),
       ),
       body: ListView(
         padding: const EdgeInsets.symmetric(vertical: 10),

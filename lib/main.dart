@@ -111,7 +111,7 @@ class _MainAppState extends State<MainApp> {
 
   Widget _buildMobileMain(BuildContext context) {
     return GetMaterialApp(
-      title: "Miru",
+      title: "袋鼠口袋",
       debugShowCheckedModeBanner: false,
       themeMode: c.theme,
       theme: c.currentThemeData,
