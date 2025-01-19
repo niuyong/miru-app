@@ -557,7 +557,7 @@ class _SettingsPageState extends State<SettingsPage> {
                 // },
                 async {
               const platform = MethodChannel('channelName');
-              platform.invokeMethod("downloadApk");
+              platform.invokeMethod("downloadApk", false);
             },
             child: Text('settings.upgrade-training'.i18n),
           ),

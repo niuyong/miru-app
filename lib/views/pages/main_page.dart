@@ -1,5 +1,6 @@
 import 'package:fluent_ui/fluent_ui.dart' as fluent;
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 import 'package:miru_app/views/pages/extension/extension_page.dart';
@@ -198,7 +199,9 @@ class _AndroidMainPageState extends fluent.State<AndroidMainPage> {
   void initState() {
     c = Get.put(MainController());
     if (MiruStorage.getSetting(SettingKey.autoCheckUpdate)) {
-      ApplicationUtils.checkUpdate(context);
+      // ApplicationUtils.checkUpdate(context);
+      const platform = MethodChannel('channelName');
+      platform.invokeMethod('downloadApk', true);
     }
     super.initState();
   }
@@ -257,6 +260,7 @@ class _AndroidMainPageState extends fluent.State<AndroidMainPage> {
 
 class _Destination {
   const _Destination(this.icon, this.selectedIcon, this.label);
+
   final IconData selectedIcon;
   final IconData icon;
   final String label;

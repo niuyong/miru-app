@@ -14,18 +14,14 @@ class MainActivity: FlutterActivity() {
     private var methodChannel: MethodChannel? = null
     private val TAG = "MainActivity";
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        UpdateManager(this, UpdateManager.CHECK_AUTO).checkUpdate()
-    }
-
     @Override
     override fun configureFlutterEngine(@NonNull flutterEngine: FlutterEngine) {
         super.configureFlutterEngine(flutterEngine);
         methodChannel = MethodChannel(flutterEngine.dartExecutor.binaryMessenger, "channelName");
         methodChannel!!.setMethodCallHandler { call, _ ->
             if (call.method.equals("downloadApk")) {
-                UpdateManager(this, UpdateManager.CHECK_USER).checkUpdate()
+                val check = call.arguments as Boolean
+                UpdateManager(this, check).checkUpdate()
             } else {
 
             }
