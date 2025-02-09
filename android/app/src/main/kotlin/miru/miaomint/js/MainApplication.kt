@@ -1,4 +1,4 @@
-package miru.miaomint
+package miru.miaomint.js
 
 import android.app.Application
 import com.hjq.toast.ToastUtils

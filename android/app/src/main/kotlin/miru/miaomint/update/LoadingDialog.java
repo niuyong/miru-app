@@ -6,7 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
-import miru.miaomint.R;
+import miru.miaomint.js.R;
 
 public class LoadingDialog {
     private static View view;

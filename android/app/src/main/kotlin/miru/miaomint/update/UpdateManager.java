@@ -8,6 +8,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -29,7 +30,7 @@ import java.math.BigDecimal;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import miru.miaomint.R;
+import miru.miaomint.js.R;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -113,6 +114,7 @@ public class UpdateManager {
             public void onResult(String response) {
                 if (response == null || response.trim().length() == 0) {
                     if (!isAutoCheck) {
+                        Log.v("aaa1", response + "");
                         Toast.makeText(context, R.string.layout_version_no_new, Toast.LENGTH_SHORT).show();
                     }
 
@@ -123,6 +125,7 @@ public class UpdateManager {
                     JSONObject jsonObject = new JSONObject(response);
                     if (!jsonObject.has("versionCode") || !jsonObject.has("fileName")) {
                         if (!isAutoCheck) {
+                            Log.v("aaa2", response + "");
                             Toast.makeText(context, R.string.layout_version_no_new, Toast.LENGTH_SHORT).show();
                         }
                         LoadingDialog.close();
@@ -134,15 +137,18 @@ public class UpdateManager {
 
                     int versionCode = VersionUtil.getVersionCode(context);
                     LoadingDialog.close();
+                    Log.v("aaa6", "versionCode = " + versionCode + "，newVersionCode = " + newVersionCode);
                     if (newVersionCode > versionCode) {
                         showUpdateDialog(newFileName, detail);
                     } else {
                         if (!isAutoCheck) {
+                            Log.v("aaa3", "versionCode = " + versionCode + "，newVersionCode = " + newVersionCode);
                             Toast.makeText(context, R.string.layout_version_no_new, Toast.LENGTH_SHORT).show();
                         }
                     }
                 } catch (JSONException e) {
                     if (!isAutoCheck) {
+                        Log.v("aaa4", e.getMessage() + "");
                         Toast.makeText(context, R.string.layout_version_no_new, Toast.LENGTH_SHORT).show();
                     }
                     LoadingDialog.close();

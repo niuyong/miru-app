@@ -5,7 +5,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.widget.Toast;
 
-import miru.miaomint.R;
+import miru.miaomint.js.R;
 
 public class NetworkUtil {
 

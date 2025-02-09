@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import miru.miaomint.R;
+import miru.miaomint.js.R;
 
 public class ConfirmDialog {
     private Context context;
