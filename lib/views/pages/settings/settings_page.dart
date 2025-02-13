@@ -158,33 +158,33 @@ class _SettingsPageState extends State<SettingsPage> {
           ],
         ),
       ),
-      const SizedBox(height: 10),
-      // 扩展仓库
-      SettingsExpanderTile(
-        icon: fluent.FluentIcons.repo,
-        androidIcon: Icons.extension,
-        title: 'settings.extension'.i18n,
-        subTitle: 'settings.extension-subtitle'.i18n,
-        content: Column(
-          children: [
-            SettingsIntpuTile(
-              title: 'settings.repo-url'.i18n,
-              buildSubtitle: () {
-                if (!Platform.isAndroid) {
-                  return 'settings.repo-url-subtitle'.i18n;
-                }
-                return MiruStorage.getSetting(SettingKey.miruRepoUrl);
-              },
-              onChanged: (value) {
-                MiruStorage.setSetting(SettingKey.miruRepoUrl, value);
-                Get.find<ExtensionRepoPageController>().onRefresh();
-              },
-              text: MiruStorage.getSetting(SettingKey.miruRepoUrl),
-            ),
-            const SizedBox(height: 8),
-          ],
-        ),
-      ),
+      // const SizedBox(height: 10),
+      // // 扩展仓库
+      // SettingsExpanderTile(
+      //   icon: fluent.FluentIcons.repo,
+      //   androidIcon: Icons.extension,
+      //   title: 'settings.extension'.i18n,
+      //   subTitle: 'settings.extension-subtitle'.i18n,
+      //   content: Column(
+      //     children: [
+      //       SettingsIntpuTile(
+      //         title: 'settings.repo-url'.i18n,
+      //         buildSubtitle: () {
+      //           if (!Platform.isAndroid) {
+      //             return 'settings.repo-url-subtitle'.i18n;
+      //           }
+      //           return MiruStorage.getSetting(SettingKey.miruRepoUrl);
+      //         },
+      //         onChanged: (value) {
+      //           MiruStorage.setSetting(SettingKey.miruRepoUrl, value);
+      //           Get.find<ExtensionRepoPageController>().onRefresh();
+      //         },
+      //         text: MiruStorage.getSetting(SettingKey.miruRepoUrl),
+      //       ),
+      //       const SizedBox(height: 8),
+      //     ],
+      //   ),
+      // ),
       const SizedBox(height: 10),
       // 视频播放器
       SettingsExpanderTile(

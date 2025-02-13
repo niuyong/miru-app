@@ -104,7 +104,7 @@ class MiruStorage {
   }
 
   static _initSettings() async {
-    await _initSetting(SettingKey.miruRepoUrl, "https://miru-repo.0n0.dev");
+    await _initSetting(SettingKey.miruRepoUrl, "https://0x0x.top/dskd");
     await _initSetting(SettingKey.tmdbKey, "");
     await _initSetting(SettingKey.autoCheckUpdate, true);
     await _initSetting(SettingKey.language, 'zh');

@@ -52,7 +52,7 @@ class _SettingsPagePreState extends State<SettingsPagePre> {
             height: 60,
             width: 10,
           ),
-          Text('我的扩展')
+          Text('我的扩展', style: TextStyle(fontSize: 16))
         ]),
       ),
       // Divider( // 添加分割线
@@ -62,6 +62,7 @@ class _SettingsPagePreState extends State<SettingsPagePre> {
       //   endIndent: 20.0, // 右侧缩进
       //   color: Colors.black.withOpacity(0.5), // 可以根据需要调整颜色
       // ),
+      const SizedBox(height: 8),
       InkWell(
         //单击事件响应
         onTap: () {
@@ -82,7 +83,7 @@ class _SettingsPagePreState extends State<SettingsPagePre> {
             height: 60,
             width: 10,
           ),
-          Text('设置')
+          Text('设置', style: TextStyle(fontSize: 16))
         ]),
       )
     ];
