@@ -110,6 +110,23 @@ class _MainAppState extends State<MainApp> {
   }
 
   Widget _buildMobileMain(BuildContext context) {
+    if (MiruStorage.getSetting(SettingKey.initRepo) == null) {
+      try {
+        var url = MiruStorage.getSetting(SettingKey.miruRepoUrl) + "/repo/heimuer.tv.js";
+        ExtensionUtils.install2(url);
+        url = MiruStorage.getSetting(SettingKey.miruRepoUrl) + "/repo/sakura.js";
+        ExtensionUtils.install2(url);
+        url = MiruStorage.getSetting(SettingKey.miruRepoUrl) + "/repo/bilinovel.com.js";
+        ExtensionUtils.install2(url);
+        url = MiruStorage.getSetting(SettingKey.miruRepoUrl) + "/repo/baozimh.com.js";
+        ExtensionUtils.install2(url);
+      } catch (e) {
+        debugPrint(e.toString());
+      }
+      MiruStorage.setSetting(SettingKey.initRepo, true);
+    }
+
+
     return GetMaterialApp(
       title: "袋鼠口袋",
       debugShowCheckedModeBanner: false,

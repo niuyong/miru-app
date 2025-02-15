@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:ffi';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -7,6 +8,8 @@ import 'package:isar/isar.dart';
 import 'package:miru_app/models/index.dart';
 import 'package:miru_app/utils/miru_directory.dart';
 import 'package:path/path.dart' as p;
+
+import 'extension.dart';
 
 class MiruStorage {
   static late final Isar database;
@@ -187,4 +190,5 @@ class SettingKey {
   static String proxy = "Proxy";
   static String proxyType = "ProxyType";
   static String saveLog = "SaveLog";
+  static String initRepo = "InitRepo";
 }
