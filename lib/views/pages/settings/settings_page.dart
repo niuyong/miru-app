@@ -145,16 +145,16 @@ class _SettingsPageState extends State<SettingsPage> {
               },
             ),
             // NSFW
-            SettingsSwitchTile(
-              title: 'settings.nsfw'.i18n,
-              buildSubtitle: () => "settings.nsfw-subtitle".i18n,
-              buildValue: () {
-                return MiruStorage.getSetting(SettingKey.enableNSFW);
-              },
-              onChanged: (value) {
-                MiruStorage.setSetting(SettingKey.enableNSFW, value);
-              },
-            ),
+            // SettingsSwitchTile(
+            //   title: 'settings.nsfw'.i18n,
+            //   buildSubtitle: () => "settings.nsfw-subtitle".i18n,
+            //   buildValue: () {
+            //     return MiruStorage.getSetting(SettingKey.enableNSFW);
+            //   },
+            //   onChanged: (value) {
+            //     MiruStorage.setSetting(SettingKey.enableNSFW, value);
+            //   },
+            // ),
           ],
         ),
       ),

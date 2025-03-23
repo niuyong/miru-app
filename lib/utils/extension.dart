@@ -1,3 +1,4 @@
+import 'dart:collection';
 import 'dart:convert';
 import 'dart:io';
 
@@ -19,7 +20,7 @@ import 'package:miru_app/views/widgets/messenger.dart';
 import 'package:path/path.dart' as path;
 
 class ExtensionUtils {
-  static Map<String, ExtensionService> runtimes = {};
+  static Map<String, ExtensionService> runtimes = LinkedHashMap.identity();
   static Map<String, String> extensionErrorMap = {};
 
   static String get extensionsDir => path.join(
@@ -55,8 +56,17 @@ class ExtensionUtils {
   static _loadExtensions() async {
     // 获取扩展列表
     final extensionsList = Directory(extensionsDir).listSync();
+    extensionsList.sort((a, b) {
+      FileStat fileStatA = a.statSync();
+      FileStat fileStatB = b.statSync();
+      return fileStatA.changed.compareTo(fileStatB.changed);
+    });
     // 遍历扩展列表
+    var xcxc = extensionsList.length;
+    debugPrint('开始了。。。。$xcxc');
     for (final extension in extensionsList) {
+      var xxx = extension.statSync().changed;
+      debugPrint('********* $xxx');
       await _installByPath(extension.path);
     }
 
@@ -127,6 +137,13 @@ class ExtensionUtils {
           throw Exception("Inconsistency between file name and package name");
         }
         runtimes[ext.package] = await ExtensionService().initRuntime(ext);
+        // var sortedKeys = runtimes.keys.toList()..sort((a, b) => b.compareTo(a));
+        // Map<String, ExtensionService> sortedRuntimes = {};
+        // for (var key in sortedKeys) {
+        //   sortedRuntimes[key] = runtimes[key]!;
+        // }
+        // runtimes.clear();
+        // runtimes.addAll(sortedRuntimes);
       } catch (e) {
         extensionErrorMap[p] = e.toString();
       }

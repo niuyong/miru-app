@@ -1,3 +1,4 @@
+import 'package:fluent_ui/fluent_ui.dart';
 import 'package:get/get.dart';
 import 'package:miru_app/models/extension.dart';
 import 'package:miru_app/utils/extension.dart';
@@ -38,6 +39,7 @@ class SearchPageController extends GetxController {
     for (var element in exts) {
       searchResultList.add(SearchResult(runitme: element));
     }
+
     getResult(_randomKey);
     needRefresh = false;
   }
@@ -67,15 +69,16 @@ class SearchPageController extends GetxController {
           element.result = result;
           // 如果搜索结果不为空,
           if (result.isNotEmpty) {
+            var indexOf = searchResultList.indexOf(element);
             searchResultList.remove(element);
+            searchResultList.insert(indexOf, element);
             // 判断是否是第一个,将第一个放到最前面
-            if (lastResultIndex == -1) {
-              searchResultList.insert(0, element);
-              lastResultIndex = 0;
-            } else {
-              searchResultList.insert(lastResultIndex + 1, element);
-              lastResultIndex++;
-            }
+            // if (lastResultIndex == -1) {
+            //   searchResultList.insert(0, element);
+            //   lastResultIndex = 0;
+            // } else {
+            //   searchResultList.insert(++lastResultIndex, element);
+            // }
           }
         }).catchError((e) {
           element.error = e.toString();
